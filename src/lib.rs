@@ -1,4 +1,4 @@
-mod two_sum;
+mod q0001_two_sum;
 
 #[cfg(test)]
 mod tests {
