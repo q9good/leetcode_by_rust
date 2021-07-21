@@ -3,18 +3,11 @@ struct Solution;
 
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut record = HashMap::with_capacity(nums.len());
-        for (index, value) in nums.iter().enumerate() {
-            record.insert(value, index as i32);
-        }
-        for (index, value) in nums.iter().enumerate() {
-            match record.get(&(target - *value)) {
-                Some(second) => {
-                    if index as i32 != *second {
-                        return vec![index as i32, *second as i32];
-                    }
-                }
-                None => (),
+        // nums.iter().enumerate().for_each(|(index, value)| {
+        for (index , value) in nums.iter().enumerate() {
+            let diff = target - value;
+            if let Some(second) = nums[index + 1..].iter().position(|&x| x == diff) {
+                return vec![index as i32, second as i32 + index as i32 + 1]
             }
         }
         vec![]
